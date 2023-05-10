@@ -1,0 +1,24 @@
+build
+logs
+workflows/build
+contracts/build
+workflows/bin
+contracts/bin
+
+# Eclipse, ctags, Mac metadata, log files
+.classpath
+.project
+.settings
+tags
+.DS_Store
+*.log
+*.log.gz
+*.orig
+
+.gradle
+
+# General build files
+**/build/*
+!docs/build/*
+
+lib/dokka.jar
