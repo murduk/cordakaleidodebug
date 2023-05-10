@@ -1,44 +1,6 @@
-# spaceships-javaAPIs token sample cordapp 
+# CORDA CBDC sample cordapp 
 
-## IMPORTANT: this project is using TokenSDK Pre-signed developer snapshot pending the formal release. NOT FOR PRODUCTION. This repo will be updated when available.
 
-```java
-tokens_release_group = 'com.r3.corda.lib.tokens'
-tokens_release_version = '1.2-RC02-PRESIGN'
-```
-
----
-This CorDapp demonstrates the new Java APIs released with [TokenSDK](https://training.corda.net/libraries/tokens-sdk/) 1.2
-
-For an exploratory overview of usage, checkout the following blog post: [here](https://medium.com/corda/corda-tokens-made-easy-with-new-java-apis-83095693d72)
-
-The core changes include easier access to the following Utility classes and functions from Java:
-- com.r3.corda.lib.tokens.money
-  - MoneyUtilities
-  - DigitalCurrency
-  - FiatCurrency 
-- com.r3.corda.lib.tokens.selection
-  - SelectionUtilities
-  - TokenQueryBy
-- com.r3.corda.lib.tokens.selection.database.config
-  - DatabaseSelectionConfig
-- com.r3.corda.lib.tokens.selection.database.selector
-  - DatabaseTokenSelection
-- com.r3.corda.lib.tokens.contracts.utilities
-  - AmountUtilities
-- com.r3.corda.lib.tokens.workflows.utilities
-  - FlowUtilities
-  - NotaryUtilities
-  - QueryUtilities
-  - TokenUtilities
-  
-Additionally two new Java Builder classes have been added to allow easy creation of both [Fungible](https://training.corda.net/libraries/tokens-sdk/#fungibletoken) and [NonFungible](https://training.corda.net/libraries/tokens-sdk/#nonfungibletoken) Tokens:
-- FungibleTokenBuilder
-- NonFungibleTokenBuilder
-
-The CorDapp will allow International Planetary Council (IPC) residents to use their local currencies to either purchase unique spaceships (represented by NonFungibleToken) OR invest in partial ownership of a spaceship (represented by a FungibleToken). 
-
-Examples of the new Java APIs will be used throughout and identified as such.
 
 
 
