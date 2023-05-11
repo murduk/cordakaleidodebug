@@ -3,6 +3,7 @@ package cbdc.tests;
 import cbdc.IssueMadFlow;
 import cbdc.MadTokenConstants;
 import cbdc.MoveMadFlow;
+import cbdc.QueryMadFlow;
 import com.google.common.collect.ImmutableList;
 import com.r3.corda.lib.tokens.contracts.states.FungibleToken;
 import com.r3.corda.lib.tokens.contracts.types.TokenType;
@@ -23,6 +24,7 @@ import org.jetbrains.annotations.NotNull;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 import java.math.BigDecimal;
 import java.util.Collections;
@@ -79,6 +81,14 @@ public class FlowTests {
         return future.get();
     }
 
+    @NotNull
+    private BigDecimal checkBalanceB() throws Exception {
+        QueryMadFlow queryMadFlow = new QueryMadFlow();
+        final CordaFuture<BigDecimal> future = b.startFlow(queryMadFlow);
+        network.runNetwork();
+        return future.get();
+    }
+
     /**
      * Test will issue MAD currency and check that it is committed to ledger of the holder
      *
@@ -116,6 +126,18 @@ public class FlowTests {
         Amount<TokenType> cBalance = QueryUtilities.tokenBalance(vsC, tokenType);
         assert (4000L == bBalance.getQuantity());
         assert (6000L == cBalance.getQuantity());
+    }
+
+    @Test
+    public void checkBalanceOfB() throws Exception {
+        aIssues100ToB();
+        BigDecimal result = checkBalanceB();
+        VaultService vs = b.getServices().getVaultService();
+        // Use QueryUtilities to easily run various queries related to tokens
+        TokenType tokenType;
+        tokenType = FiatCurrency.getInstance("MAD");
+        Amount<TokenType> fiatBalance = QueryUtilities.tokenBalance(vs, tokenType);
+        assertEquals(fiatBalance.toDecimal(), result);
     }
 
 }

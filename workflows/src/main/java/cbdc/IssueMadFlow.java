@@ -12,10 +12,14 @@ import com.r3.corda.lib.tokens.workflows.utilities.FungibleTokenBuilder;
 import net.corda.core.contracts.Amount;
 import net.corda.core.flows.FlowException;
 import net.corda.core.flows.FlowLogic;
+import net.corda.core.flows.InitiatingFlow;
+import net.corda.core.flows.StartableByRPC;
 import net.corda.core.identity.Party;
 import net.corda.core.transactions.SignedTransaction;
 import org.jetbrains.annotations.NotNull;
 import java.util.Collections;
+@InitiatingFlow
+@StartableByRPC
 public class IssueMadFlow extends FlowLogic<SignedTransaction> {
     @NotNull
     private final Party holder;
