@@ -40,7 +40,9 @@ public class MoveMadFlow extends FlowLogic<SignedTransaction> {
         final TokenType tokenType = FiatCurrency.getInstance("MAD");
 
         final Party bamMint = getServiceHub().getNetworkMapCache().getPeerByLegalName(MadTokenConstants.BAM_MINT);
-        if (bamMint == null) throw new FlowException("No BAM Mint found");
+        final Party bamKaleidoMint = getServiceHub().getNetworkMapCache().getPeerByLegalName(MadTokenConstants.BAM_KALEIDO_MINT);
+
+        if (bamMint == null && bamKaleidoMint == null) throw new FlowException("No BAM Mint found");
 
         // Who is going to own the output, and how much?
         final Amount<TokenType> madAmount = AmountUtilities.amount(amount, tokenType);

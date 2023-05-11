@@ -34,7 +34,7 @@ public class IssueMadFlow extends FlowLogic<SignedTransaction> {
     @Suspendable
     public SignedTransaction call() throws FlowException {
         final Party issuer = getOurIdentity();
-        if (!issuer.getName().equals(MadTokenConstants.BAM_MINT)) {
+        if (!(issuer.getName().equals(MadTokenConstants.BAM_MINT) || issuer.getName().equals(MadTokenConstants.BAM_KALEIDO_MINT))) {
             throw new FlowException("We are not the BAM Mint");
         }
 
